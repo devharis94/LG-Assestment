@@ -1,5 +1,7 @@
+import Footer from '@/components/Footer'
 import './globals.css'
 import type { Metadata } from 'next'
+import Sidebar from '@/components/Sidebar'
 
 export const metadata: Metadata = {
   title: 'Storyblok Article Website',
@@ -13,9 +15,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-100 font-sans">
-        <div className="mx-auto px-4 max-w-[1840px]">
-          {children}
+      <body className="bg-white text-body">
+        <div className="flex flex-col">
+
+          <Sidebar />
+
+          <main className="flex-1 pl-60 border max-w-[1840px]">
+            {children}
+          </main>
+
+          <Footer />
+        
         </div>
       </body>
     </html>

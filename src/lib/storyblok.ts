@@ -1,34 +1,32 @@
-import StoryblokClient from 'storyblok-js-client'
+import { storyblokInit, apiPlugin, getStoryblokApi } from '@storyblok/react';
 
-const Storyblok = new StoryblokClient({
+storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
-  cache: {
-    clear: 'auto',
-    type: 'memory'
-  }
-})
+  use: [apiPlugin],
+});
 
-export async function getStories() {
+const storyblokApi = getStoryblokApi();
+
+export const getStories = async () => {
   try {
-    const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft'  // Change this to 'published' for production
+    const { data } = await storyblokApi.get('cdn/stories', {
+      version: 'draft', // or 'published'
     });
     return data.stories;
   } catch (error) {
-    console.error('Error fetching Storyblok data:', error);
+    console.error('Error fetching stories:', error);
     return [];
   }
-}
+};
 
-export async function getStory(slug: string) {
+export const getStory = async (slug: string) => {
   try {
-    const { data } = await Storyblok.get(`cdn/stories/${slug}`, {
-      version: 'draft'  // Change this to 'published' for production
+    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+      version: 'draft', // or 'published'
     });
-    console.log('Fetched story:', JSON.stringify(data.story, null, 2));
     return data.story;
   } catch (error) {
-    console.error(`Error fetching Storyblok story for slug ${slug}:`, error);
+    console.error(`Error fetching story for slug ${slug}:`, error);
     return null;
   }
-}
+};

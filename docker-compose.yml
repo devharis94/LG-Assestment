@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nextjs:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - NEXT_PUBLIC_STORYBLOK_API_TOKEN=${NEXT_PUBLIC_STORYBLOK_API_TOKEN}

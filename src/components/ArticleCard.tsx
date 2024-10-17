@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -7,25 +8,23 @@ interface ArticleCardProps {
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="bg-white overflow-hidden">
       {article.content && article.content.image && (
         <Image 
           src={article.content.image.filename} 
           alt={article.content.image.alt || article.name} 
           width={300} 
           height={200} 
-          className="w-full h-48 object-cover"
+          className="w-[600px] h-[470px] object-cover"
         />
       )}
-      <div className="p-4">
-        <h2 className="mb-2 font-bold text-xl">{article.name}</h2>
-        {article.content && article.content.intro && (
-          <p className="mb-4 text-gray-600">{article.content.intro}</p>
-        )}
-        <Link href={`/${article.full_slug}`} className="text-blue-500 hover:underline">
-          Read more
-        </Link>
-      </div>
+      <h2 className="mb-2 text-brand-dark text-heading">{article.name}</h2>
+      {article.content && article.content.intro && (
+        <p className="mb-4 text-body text-brand-dark">{article.content.intro}</p>
+      )}
+      <Link href={`/${article.full_slug}`} className="text-blue-500 hover:underline">
+        Read more
+      </Link>
     </div>
   );
 };

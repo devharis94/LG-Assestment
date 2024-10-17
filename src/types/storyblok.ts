@@ -1,17 +1,18 @@
-import { StoryblokResult, ISbStoryData } from '@storyblok/react';
+/* eslint-disable */
+import { ISbStoryData } from '@storyblok/react';
 
-export interface ArticleStoryblok extends ISbStoryData {
-  content: {
-    _uid: string;
-    component: string;
-    title: string;
-    subtitle?: string;
-    image?: {
-      filename: string;
-      alt?: string;
-    };
-    content: any; // This could be a rich text field
-  };
+interface Image {
+  filename: string;
+  alt?: string;
 }
 
-export type ArticleStoryblokResult = StoryblokResult<ArticleStoryblok>;
+interface Content {
+  title: string;
+  subtitle?: string;
+  image?: Image;
+  richtext: any; // Define a more specific type if possible
+}
+
+export interface ArticleStoryblok extends ISbStoryData {
+  content: Content;
+}
