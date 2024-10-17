@@ -20,7 +20,7 @@ export default function RootLayout({
 
           <Sidebar />
 
-          <main className="flex-1 pl-60 border max-w-[1840px]">
+          <main className="flex-1 pl-60 max-w-[1840px]">
             {children}
           </main>
 
