@@ -8,9 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        sans: ['DINOT', 'sans-serif'],
+      },
+      maxWidth: {
+        'custom': '1840px',
       },
     },
   },
